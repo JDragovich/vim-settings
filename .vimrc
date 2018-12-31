@@ -28,6 +28,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'hashivim/vim-terraform'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
@@ -46,6 +49,8 @@ set autoread
 
 nnoremap <C-S-Left> gT
 nnoremap <C-S-Right> gt
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
 
 let g:vim_jsx_pretty_colorful_config = 1
 let g:indentLine_char = '⎸'
