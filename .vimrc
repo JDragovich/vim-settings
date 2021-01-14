@@ -26,6 +26,8 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 Plug 'kien/ctrlp.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'wikitopian/hardmode'
+Plug 'vimoutliner/vimoutliner'
 
 call plug#end()
 
@@ -51,6 +53,8 @@ let g:indentLine_color_term = 239
 autocmd FileType markdown set conceallevel=0
 autocmd FileType markdown set spell
 autocmd FileType markdown set linebreak
+
+autocmd FileType tex set linebreak
 
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
