@@ -21,15 +21,21 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'kien/ctrlp.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'wikitopian/hardmode'
 Plug 'vimoutliner/vimoutliner'
+Plug 'robbles/logstash.vim'
+Plug 'integralist/vim-mypy'
+Plug 'petobens/poet-v'
+Plug 'github/copilot.vim'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 
 call plug#end()
+
+let g:airline_theme='bubblegum'
 
 set number
 
@@ -49,6 +55,35 @@ let g:NERDDefaultAlign = 'left'
 let g:vim_jsx_pretty_colorful_config = 1
 let g:indentLine_char = '⎸'
 let g:indentLine_color_term = 239
+
+" Set Leader
+let g:mapleader="\\"
+
+" Python Formatting
+let g:ale_fixers = {'python': ['black','isort', 'remove_trailing_lines', 'trim_whitespace'], 'terraform': ['terraform', 'remove_trailing_lines', 'trim_whitespace'], 'rust': ['rustfmt', 'remove_trailing_lines', 'trim_whitespace']}
+let g:ale_linters = {'python': ['flake8', 'mypy'], 'terraform': ['terraform'], 'rust': ['rustc']}
+let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
+let g:ale_python_black_auto_poetry = 1
+let g:ale_python_flake8_auto_poetry = 1
+let g:ale_python_isort_auto_poetry = 1
+let g:ale_python_mypy_auto_poetry = 1
+let g:ale_python_mypy_options = '--ignore-missing-imports'
+let g:ale_python_isort_options = '--profile=black'
+
+let g:poetv_executables = ['poetry']
+let g:poetv_auto_activate = 1
+let g:airline#extensions#poetv#enabled = 1
+
+autocmd FileType python set spell
+
+" vim prettier settings
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1
+
+autocmd BufWritePre *.js Prettier
+autocmd BufWritePre *.jsx Prettier
+autocmd BufWritePre *.css Prettier
 
 autocmd FileType markdown set conceallevel=0
 autocmd FileType markdown set spell
@@ -72,3 +107,8 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+
+" disable to stupid markdown folding
+let g:vim_markdown_folding_disabled = 1
