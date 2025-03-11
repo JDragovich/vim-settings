@@ -32,6 +32,7 @@ Plug 'petobens/poet-v'
 Plug 'github/copilot.vim'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
+Plug 'rhysd/conflict-marker.vim'
 
 call plug#end()
 
@@ -60,11 +61,12 @@ let g:indentLine_color_term = 239
 let g:mapleader="\\"
 
 " Python Formatting
-let g:ale_fixers = {'python': ['black','isort', 'remove_trailing_lines', 'trim_whitespace'], 'terraform': ['terraform', 'remove_trailing_lines', 'trim_whitespace'], 'rust': ['rustfmt', 'remove_trailing_lines', 'trim_whitespace']}
-let g:ale_linters = {'python': ['flake8', 'mypy'], 'terraform': ['terraform'], 'rust': ['rustc']}
+let g:ale_fixers = {'python': ['ruff_format', 'isort', 'remove_trailing_lines', 'trim_whitespace'], 'terraform': ['terraform', 'remove_trailing_lines', 'trim_whitespace'], 'rust': ['rustfmt', 'remove_trailing_lines', 'trim_whitespace']}
+let g:ale_linters = {'python': ['ruff', 'flake8', 'mypy'], 'terraform': ['terraform'], 'rust': ['rustc']}
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
-let g:ale_python_black_auto_poetry = 1
+let g:ale_python_ruff_auto_poetry = 1
+let g:ale_python_ruff_format_auto_poetry = 1
 let g:ale_python_flake8_auto_poetry = 1
 let g:ale_python_isort_auto_poetry = 1
 let g:ale_python_mypy_auto_poetry = 1
@@ -75,7 +77,7 @@ let g:poetv_executables = ['poetry']
 let g:poetv_auto_activate = 1
 let g:airline#extensions#poetv#enabled = 1
 
-autocmd FileType python set spell
+autocmd FileType python set nospell
 
 " vim prettier settings
 let g:prettier#autoformat_require_pragma = 0
